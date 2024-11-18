@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="header">
+        <div class="header-title">
+            <h2>Clients </h2>
+        </div>
+        <div class="filter-col">
+          <button  class="main-button" (click)="pageRel()">
+            <mat-icon mat-icon-button>refresh</mat-icon>
+          </button>
+          <input class="input-search" type="search" id="search" [(ngModel)]="filter['search_query']"
+          (input)="applyFilter()" placeholder="search..." />
+        </div>
+        <div class="header-actions">
+            <button class="main-button" (click)="expClients()">
+                <span>Export Clients</span>
+                <span><mat-icon mat-icon-button>download</mat-icon></span>
+            </button>
+        </div>
+    </div>
+    <div class="table-bg">
+        <p-table [value]="clients" sortField="representative.name" sortMode="single" [scrollable]="true"
+            [scrollHeight]="height" [rowHover]="true" groupRowsBy="representative.name" [filterDelay]="0"
+            selectionMode="single"
+            [metaKeySelection]="true"
+            [loading]="isSending"
+          >
+
+          <ng-template pTemplate="header">
+
+            <tr>
+              <th class="header-cell">#</th>
+              <th class="header-cell">Name</th>
+              <th class="header-cell">email</th>
+              <th class="header-cell">Birthdate
+                <p-columnFilter type="date" field="send_date" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" [showApplyButton]="false" [showClearButton]="false">
+                  <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                      <p-calendar #calendar [ngModel]="value" (onSelect)="filterCallback('date',calendar.value)" dateFormat="dd/mm/yy"></p-calendar>
+                  </ng-template>
+                </p-columnFilter>
+              </th>
+              <th class="header-cell">
+                <div class="flex justify-content-between align-items-center">
+                  Country of Residence
+                  <p-columnFilter field="country_id" matchMode="in" display="menu" [showMatchModes]="false"
+                    [showOperator]="false" [showAddButton]="false" [showApplyButton]="false"
+                    [showClearButton]="false" class="ml-auto">
+                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                      <div class="p-radiobutton-list" style="max-height: 200px; overflow-y: auto;">
+                        <div *ngFor="let option of countries_list">
+                            <p-radioButton name="country" [value]="option" [(ngModel)]="filter['country']"
+                              (onClick)="filterCallback('country',option)" [style]="{'margin-top': '0.5rem'}" class="radio-button"></p-radioButton>
+                            <label>{{ option }}</label>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </p-columnFilter>
+                </div>
+              </th>
+              <th class="header-cell">Balance</th>
+              <th class="header-cell">Total Transactions</th>
+              <th class="header-cell">Total Spent</th>
+              <th class="header-cell">Total Gained</th>
+              <th class="header-cell">View Transactions</th>
+            </tr>
+          </ng-template>
+
+
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="column-border">{{ rowData.id ? rowData.id : '#' }}</td>
+              <td class="column-border">{{ rowData.name ? rowData.name : '--' }}</td>
+              <td class="column-border">{{ rowData.email ? rowData.email : '--' }}</td>
+              <td class="column-border">{{ rowData.birthdate ? formatdate(rowData.birthdate) : '--' }}</td>
+              <td class="column-border">{{ rowData.country ? rowData.country : '' }}</td>
+              <td class="column-border">{{ rowData.balance? (rowData.balance + ' $'): '0'}}</td>
+              <td class="column-border">{{ rowData.nb_trans? rowData.nb_trans: '0'}}</td>
+              <td class="column-border">{{ rowData.buy_sum? (rowData.buy_sum + ' $'): '0'}}</td>
+              <td class="column-border">{{ rowData.sell_sum? (rowData.sell_sum + ' $'): '0'}}</td>
+              <td class="column-border" >
+                <div class="action-but-cont">
+                  <button class="action-button" [disabled]="rowData.pdf==null" matTooltip="view client" matTooltipPosition="above"><mat-icon mat-icon-button>visibility</mat-icon></button>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+        <p-paginator [rows]="pageSize" [totalRecords]=listLength (onPageChange)="getServerData($event)"
+          [showFirstLastIcon]="true" [rowsPerPageOptions]=pageSizeOptions
+          [showCurrentPageReport] = "true"
+          currentPageReportTemplate="{totalRecords} total clients"
+        ></p-paginator>
+
+    </div>
+</div>
+

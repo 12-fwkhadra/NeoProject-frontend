@@ -1,1 +1,149 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'material-icons/iconfont/material-icons.css';
+@import 'primeng/resources/themes/saga-blue/theme.css';
+@import 'primeng/resources/primeng.min.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+html, body { height: 100%;overflow: hidden; }
+body { margin: 0; }
+
+.container{
+    margin-left: 1rem;
+}
+
+.header {
+    width: 100%;
+    margin-top: 7%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    background: #AAAEFF;
+}
+
+.header-title,
+.filter-col {
+    flex: 1;
+    align-items: center;
+}
+
+.header-title h2 {
+    margin: 0.5rem 0 0.5rem 0;
+    color: black;
+}
+.header-title{
+    margin-left: 2rem;
+    display: flex;
+}
+
+.filter-col {
+    display: flex;
+    gap: 1rem;
+}
+
+input#search {
+    line-height: 1.5rem;
+    width: 300px;
+    border-radius: 20px;
+    padding: 5px;
+    border-color: transparent;
+    outline: none;
+}
+
+.header-actions{
+    margin-right: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+p-table {
+    width: 100%;
+}
+.mat-drawer-content {
+    overflow: hidden !important;
+}
+.main-button .mat-icon{
+    padding-top: 3px !important;
+}
+.main-button{
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.main-button:hover {
+    background-color: #CACCFF;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    text-align: center !important;
+    padding: 0.5rem !important;
+}
+.p-datatable .p-datatable-tbody>tr>td {
+    text-align: center !important;
+    padding: 1rem 0.5rem !important;
+    word-wrap: break-word !important;
+    width: 1rem !important;
+}
+.justify-content-between {
+    justify-content: center !important;
+}
+.p-paginator{
+    padding: 0 !important;
+}
+.action-button{
+    border: none;
+    cursor: pointer;
+    color: black;
+    transition: all 0.3s ease;
+    padding: 2px !important;
+}
+.action-button:hover {
+    transform: scale(1.1);
+    color: #B0B2E1;
+}
+
+.p-column-filter-overlay-menu .p-column-filter-buttonbar {
+    padding: 0rem !important;
+}
+
+.p-datepicker {
+    transform: scale(0.8) !important;
+}
+
+.radio-button-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.radio-button-container label {
+    margin: 0.3rem 0.2rem 0 0.5rem;
+}
+
+.radio-button {
+    margin: 0rem !important;
+    margin-right: 0.5rem !important;
+}
+
+#content-type {
+    height: 2rem !important;
+    direction: rtl !important;
+    text-align: right !important;
+    resize: none !important;
+    border-width: 1px !important;
+}
+
+#content-type:focus {
+    border-color: black;
+    border-width: 1px !important;
+    outline: none !important;
+}
+
+.action-but-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+

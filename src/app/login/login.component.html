@@ -1,0 +1,22 @@
+<div class="login-container">
+    <div class="login-box">
+        <div class="logo">
+             <h3>Neo Challenge Login</h3>
+        </div>
+        <div class="action-container">
+            <form class="form-box" action="index.html" novalidate>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><mat-icon class="input-icon">person</mat-icon></span>
+                    <input type="text" pInputText [(ngModel)]="user.email" name="email" placeholder="email">
+                </div>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><mat-icon class="input-icon">key</mat-icon></span>
+                    <p-password [(ngModel)]="user.password" name="password" [toggleMask]="true" />
+                </div>
+            </form>
+            <button class="action-button" [disabled]="!user.email || !user.password" (click)="onLogin()">
+                <mat-icon class="input-icon">lock_open</mat-icon> Login
+            </button>
+        </div>
+    </div>
+</div>

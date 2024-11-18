@@ -1,0 +1,88 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    height:100%;
+}
+.login-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ece7e7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 450px;
+    width: 450px;
+    margin-top: 2%;
+}
+.logo{
+    margin-top:1rem;
+}
+img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.action-container, .form-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-box{
+    gap: 1rem;
+}
+input{
+    width: 300px;
+    height: 2rem;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    padding-left: 2rem;
+}
+input:focus, :host ::ng-deep .p-password input:focus{
+    outline: 1px solid grey;
+    border-radius: 10px;
+}
+
+:host ::ng-deep .p-password input {
+    width: 300px;
+    height: 2rem !important;
+    border-radius: 10px;
+    border: 1px solid #dddddd !important;
+    padding-left: 2rem !important;
+}
+:host ::ng-deep .p-password .p-icon {
+    position: absolute !important;
+    right: 0.5rem !important;
+    top: 30% !important;
+}
+
+.action-button{
+    margin: 1rem 0 1rem 0;
+    padding: 0.5rem;
+    border-radius: 10px;
+    width:max-content;
+    height:max-content;
+    background-color: #FFE070;
+    border: none;
+    color: black;
+    font-size: 1rem;
+}
+.action-button:disabled{
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+:host ::ng-deep .p-inputgroup {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.p-inputgroup-addon {
+    position: absolute;
+    padding: 0 5px;
+    z-index: 3;
+}
