@@ -24,6 +24,8 @@ import {TableModule} from "primeng/table";
 import { MatIconModule } from '@angular/material/icon';
 import {RadioButtonModule} from "primeng/radiobutton";
 import { ViewClientComponent } from './dashboard/view-client/view-client.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true
@@ -48,7 +50,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     PaginatorModule,
     TableModule,
     MatIconModule,
-    RadioButtonModule
+    RadioButtonModule,
+    MatDialogModule
 
   ],
   schemas: [NO_ERRORS_SCHEMA],

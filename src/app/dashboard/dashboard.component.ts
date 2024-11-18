@@ -5,7 +5,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {MessageService} from "primeng/api";
 import {delay} from "rxjs";
 import {ViewClientComponent} from "./view-client/view-client.component";
-
+import {AuthenticationService} from "../services/authentication.service";
+import {Router} from "@angular/router";
+import {UserstateService} from "../services/userstate.service";
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -24,7 +27,7 @@ export class DashboardComponent {
   pageSizeOptions: number[] = [100, 500, 700, 1000];
   isSending=false;
   private FileSaver: any;
-  constructor(private datafetchsvc: DatafetchService, private commonService: CommonServiceService, public dialog: MatDialog, private messageService: MessageService){
+  constructor(private auth: AuthenticationService, private state: UserstateService, private router: Router, private datafetchsvc: DatafetchService, private commonService: CommonServiceService, public dialog: MatDialog, private messageService: MessageService){
         this.height = this.commonService.calculateScrollHeight();
         this.resizeListener = this.commonService.addResizeListener((height: string) => {
           this.height = height;
@@ -48,8 +51,21 @@ export class DashboardComponent {
     let dialogRef = this.dialog.open(ViewClientComponent, {
       height: '600px',
       width: '900px',
-      data: { client: data}
+      data: data
     });
+  }
+
+  logout(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.auth.logout(token).subscribe((user) => {
+        if (user.status === 'success') {
+          this.state.setStatus(false, false, '');
+          localStorage.clear();
+          this.router.navigate(['/login'], { replaceUrl: true }); // navigate to the login page or another specified route
+        }
+      });
+    }
   }
 
   expClients(): void {
@@ -57,7 +73,7 @@ export class DashboardComponent {
     this.datafetchsvc.exportClients(this.filter).pipe(
       delay(1500)
     ).subscribe(file => {
-      this.FileSaver.saveAs(file, `export all clients.xlsx`);
+      saveAs(file, 'export_all_clients.xlsx');
       this.isSending=false;
     }, err => {
       this.messageService.add({severity:'error', detail: 'An error occured, please contact support'});

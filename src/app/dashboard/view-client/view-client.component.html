@@ -1,0 +1,60 @@
+<div class="container">
+      <div class="heading">
+        <div class="title">
+            <h2>{{client.name}}  # {{client.id}}</h2>
+            <h4>{{client.email}}</h4>
+        </div>
+        <div class="close-button">
+            <button class="action-button" (click)="closeDialog()"><mat-icon mat-icon-button>close</mat-icon></button>
+        </div>
+    </div>
+
+      <div class="table-bg">
+        <p-table [value]="trans" sortField="representative.name" sortMode="single" [scrollable]="true"
+            [scrollHeight]="height" [rowHover]="true" groupRowsBy="representative.name" [filterDelay]="0"
+            selectionMode="single"
+            [metaKeySelection]="true"
+          >
+
+          <ng-template pTemplate="header">
+
+            <tr>
+              <th class="header-cell">#</th>
+              <th class="header-cell">Type</th>
+                <th class="header-cell">Date
+                  <p-columnFilter type="date" field="send_date" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" [showApplyButton]="false" [showClearButton]="false">
+                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                      <p-calendar class="custom-calendar" [inputStyle]="{'width':'100px'}" [inline]="true" selectionMode="range" [(ngModel)]="dateRange" (ngModelChange)="datevalue(dateRange)"></p-calendar>
+                    </ng-template>
+                  </p-columnFilter>
+                  <button  class="main-button" (click)="pageRel()">
+                    <mat-icon mat-icon-button>refresh</mat-icon>
+                  </button>
+                </th>
+
+              <th class="header-cell">Amount</th>
+              <th class="header-cell">Exchange Rate</th>
+              <th class="header-cell">Amount in USD</th>
+            </tr>
+          </ng-template>
+
+
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="column-border">{{ rowData.id ? rowData.id : '#' }}</td>
+              <td class="column-border">{{ rowData.type ? rowData.type : '--' }}</td>
+              <td class="column-border">{{ rowData.date ? formatdate(rowData.date) : '--' }}</td>
+              <td class="column-border">{{ (rowData.amount && rowData.currency) ? (rowData.amount + ' ' + rowData.currency) : '0' }}</td>
+              <td class="column-border">{{ rowData.rate? rowData.rate: '0'}}</td>
+              <td class="column-border">{{ rowData.in_usd? rowData.in_usd: '0'}}</td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+        <p-paginator [rows]="pageSize" [totalRecords]=listLength (onPageChange)="getServerData($event)"
+          [showFirstLastIcon]="true" [rowsPerPageOptions]=pageSizeOptions
+          [showCurrentPageReport] = "true"
+          currentPageReportTemplate="{totalRecords} total transactions"
+        ></p-paginator>
+      </div>
+</div>

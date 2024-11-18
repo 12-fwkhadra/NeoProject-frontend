@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="top-header">
+      <button class="action-button" (click)="logout()"><mat-icon mat-icon-button>logout</mat-icon></button>
+    </div>
     <div class="header">
         <div class="header-title">
             <h2>Clients </h2>
@@ -12,8 +15,7 @@
         </div>
         <div class="header-actions">
             <button class="main-button" (click)="expClients()">
-                <span>Export</span>
-                <span><mat-icon mat-icon-button>download</mat-icon></span>
+                <span><mat-icon mat-icon-button>download</mat-icon></span><span>Export</span>
             </button>
         </div>
     </div>
@@ -78,7 +80,7 @@
               <td class="column-border">{{ rowData.sell_sum? (rowData.sell_sum + ' $'): '0'}}</td>
               <td class="column-border" >
                 <div class="action-but-cont">
-                  <button class="action-button" (click)="viewTrans(rowData)" [disabled]="rowData.pdf==null" matTooltip="view client" matTooltipPosition="above"><mat-icon mat-icon-button>visibility</mat-icon></button>
+                  <button class="action-button" (click)="viewTrans(rowData)" matTooltip="view client" matTooltipPosition="above"><mat-icon mat-icon-button>visibility</mat-icon></button>
                 </div>
               </td>
             </tr>

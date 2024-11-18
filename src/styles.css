@@ -13,7 +13,7 @@ body { margin: 0; }
 
 .header {
     width: 100%;
-    margin-top: 7%;
+    margin-top: 1%;
     margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
@@ -99,6 +99,7 @@ p-table {
     color: black;
     transition: all 0.3s ease;
     padding: 2px !important;
+    background:transparent;
 }
 .action-button:hover {
     transform: scale(1.1);

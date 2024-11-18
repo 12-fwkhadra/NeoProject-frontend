@@ -66,9 +66,12 @@ export class DatafetchService {
     return this.http.get<any>(url, { responseType: 'blob' as 'json' });
   }
 
-  getClientTransactions(cid: number): Observable<any> {
+  getClientTransactions(cid: number, dateRange:any): Observable<any> {
     let url: string = `${this.appconf.apiBaseUrl}/clients/${cid}/`;
-    return this.http.get<any>(url);
+    const params = {
+      dateRange: dateRange
+    };
+    return this.http.get<any>(url, {params: params});
   }
 
   getCountries(): Observable<any> {
