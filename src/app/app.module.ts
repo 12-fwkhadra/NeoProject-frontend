@@ -23,6 +23,7 @@ import {PaginatorModule} from "primeng/paginator";
 import {TableModule} from "primeng/table";
 import { MatIconModule } from '@angular/material/icon';
 import {RadioButtonModule} from "primeng/radiobutton";
+import { ViewClientComponent } from './dashboard/view-client/view-client.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true
@@ -31,7 +32,8 @@ const globalRippleConfig: RippleGlobalOptions = {
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ViewClientComponent
   ],
   imports: [
     BrowserModule,

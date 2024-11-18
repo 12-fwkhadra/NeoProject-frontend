@@ -3,6 +3,8 @@ import {DatafetchService} from "../services/datafetch.service";
 import {CommonServiceService} from "../services/common-service.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MessageService} from "primeng/api";
+import {delay} from "rxjs";
+import {ViewClientComponent} from "./view-client/view-client.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +23,7 @@ export class DashboardComponent {
   pageIndex = 0;
   pageSizeOptions: number[] = [100, 500, 700, 1000];
   isSending=false;
+  private FileSaver: any;
   constructor(private datafetchsvc: DatafetchService, private commonService: CommonServiceService, public dialog: MatDialog, private messageService: MessageService){
         this.height = this.commonService.calculateScrollHeight();
         this.resizeListener = this.commonService.addResizeListener((height: string) => {
@@ -30,7 +33,7 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.getClients();
-    this.datafetchsvc.getCountries().subscribe(data=> this.countries_list = data);
+    this.datafetchsvc.getCountries().subscribe(data=> this.countries_list = data.countries);
     this.resizeListener = this.commonService.addResizeListener((height: string) => {
       this.height = height;
     });
@@ -41,18 +44,25 @@ export class DashboardComponent {
       data => { this.clients = data.clients; this.listLength = data.total;});
   }
 
+  viewTrans(data:any): void{
+    let dialogRef = this.dialog.open(ViewClientComponent, {
+      height: '600px',
+      width: '900px',
+      data: { client: data}
+    });
+  }
 
   expClients(): void {
-    // this.isSending=true;
-    // this.datafetchsvc.exportAllOrders(this.filter).pipe(
-    //   delay(1500)
-    // ).subscribe(file => {
-    //   FileSaver.saveAs(file, `export all orders.xlsx`);
-    //   this.isSending=false;
-    // }, err => {
-    //   this.messageService.add({severity:'error', detail: 'An error occured, please contact support'});
-    //   this.isSending=false;
-    // });
+    this.isSending=true;
+    this.datafetchsvc.exportClients(this.filter).pipe(
+      delay(1500)
+    ).subscribe(file => {
+      this.FileSaver.saveAs(file, `export all clients.xlsx`);
+      this.isSending=false;
+    }, err => {
+      this.messageService.add({severity:'error', detail: 'An error occured, please contact support'});
+      this.isSending=false;
+    });
   }
 
   formatdate(date: any): string {
@@ -76,6 +86,7 @@ export class DashboardComponent {
   getServerData(event: any) {
     this.pageSize = event.rows || 100;
     this.pageIndex = event.first / this.pageSize;
+    console.log(this.listLength)
     // this.isSending = true;
     this.getClients();
   }

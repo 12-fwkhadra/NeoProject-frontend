@@ -8,11 +8,11 @@
             <mat-icon mat-icon-button>refresh</mat-icon>
           </button>
           <input class="input-search" type="search" id="search" [(ngModel)]="filter['search_query']"
-          (input)="applyFilter()" placeholder="search..." />
+          (input)="applyFilter()" placeholder="search by id, name, email..." />
         </div>
         <div class="header-actions">
             <button class="main-button" (click)="expClients()">
-                <span>Export Clients</span>
+                <span>Export</span>
                 <span><mat-icon mat-icon-button>download</mat-icon></span>
             </button>
         </div>
@@ -47,9 +47,9 @@
                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                       <div class="p-radiobutton-list" style="max-height: 200px; overflow-y: auto;">
                         <div *ngFor="let option of countries_list">
-                            <p-radioButton name="country" [value]="option" [(ngModel)]="filter['country']"
-                              (onClick)="filterCallback('country',option)" [style]="{'margin-top': '0.5rem'}" class="radio-button"></p-radioButton>
-                            <label>{{ option }}</label>
+                            <p-radioButton name="country" [value]="option['country']" [(ngModel)]="filter['country']"
+                              (onClick)="filterCallback('country',option['country'])" [style]="{'margin-top': '0.5rem'}" class="radio-button"></p-radioButton>
+                            <label>{{ option['country'] }}</label>
                         </div>
                       </div>
                     </ng-template>
@@ -78,7 +78,7 @@
               <td class="column-border">{{ rowData.sell_sum? (rowData.sell_sum + ' $'): '0'}}</td>
               <td class="column-border" >
                 <div class="action-but-cont">
-                  <button class="action-button" [disabled]="rowData.pdf==null" matTooltip="view client" matTooltipPosition="above"><mat-icon mat-icon-button>visibility</mat-icon></button>
+                  <button class="action-button" (click)="viewTrans(rowData)" [disabled]="rowData.pdf==null" matTooltip="view client" matTooltipPosition="above"><mat-icon mat-icon-button>visibility</mat-icon></button>
                 </div>
               </td>
             </tr>

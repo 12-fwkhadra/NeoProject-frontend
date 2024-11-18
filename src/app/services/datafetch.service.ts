@@ -46,6 +46,31 @@ export class DatafetchService {
     return this.http.get<any>(url, {headers});
   }
 
+    exportClients(filter:any): Observable<any> {
+    let url: string = `${this.appconf.apiBaseUrl}/clients/export/`;
+    let queryParams: string[] = [];
+
+    if (filter.search_query) {
+      queryParams.push(`search_query=${filter.search_query}`);
+    }
+    if (filter.send_date !== undefined) {
+      queryParams.push(`date=${filter.date}`);
+    }
+    if (filter && filter.country !== undefined) {
+      queryParams.push(`country=${filter.country}`);
+    }
+    if (queryParams.length > 0) {
+      url += `?${queryParams.join('&')}`;
+    }
+    const headers = this.getAuthHeaders();
+    return this.http.get<any>(url, { responseType: 'blob' as 'json' });
+  }
+
+  getClientTransactions(cid: number): Observable<any> {
+    let url: string = `${this.appconf.apiBaseUrl}/clients/${cid}/`;
+    return this.http.get<any>(url);
+  }
+
   getCountries(): Observable<any> {
     let url: string = `${this.appconf.apiBaseUrl}/countries/`;
     return this.http.get<any>(url);
