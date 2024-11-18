@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="heading">
+        <div class="title">
+            <h2>Add Transaction</h2>
+        </div>
+        <div class="close-button">
+            <button class="action-button" (click)="closeDialog()">
+                <mat-icon mat-icon-button>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="type-row">  <!-- Corrected this line -->
+            <div class="flex align-items-center">
+                <p-radioButton
+                    name="sell"
+                    value="Sell"
+                    [(ngModel)]="tran.transaction_type"
+                    inputId="type1"
+                    label="Sell"
+                    [ngStyle]="{'color': !tran['transaction_type']}"
+                    (ngModelChange)="formValidation()"
+                />
+            </div>
+
+            <div class="flex align-items-center">
+                <p-radioButton
+                    name="buy"
+                    value="Buy"
+                    [(ngModel)]="tran.transaction_type"
+                    inputId="type2"
+                    label="Buy"
+                    [ngStyle]="{'color': !tran['transaction_type']}"
+                    (ngModelChange)="formValidation()"
+                />
+            </div>
+</div>
+      <div style="margin-top:1rem;">
+            <p-calendar
+                [(ngModel)]="tran.transaction_date"
+                [dateFormat]="'yy-m-dd'"
+                [showIcon]="true"
+                inputId="icondisplay"
+                [ngStyle]="{'border-red': !tran['transaction_date']}"
+                (onSelect)="formatDate($event)" (ngModelChange)="formValidation()">
+            </p-calendar>
+      </div>
+
+
+
+      <div class="currency-row">
+        <input
+            id="disabled-input"
+            type="text"
+            pInputText
+            placeholder="transaction amount"
+            [ngStyle]="{'border-red': !tran['amount']}"
+            [(ngModel)]="tran.amount" (ngModelChange)="formValidation()"/>
+
+        <p-dropdown
+            [options]="currency_list"
+            [(ngModel)]="tran.currency"
+            optionLabel="currency"
+            optionValue="currency"
+            placeholder="Currency"
+            [style]="{'width': '120px'}"
+            [ngStyle]="{'border-red': !tran['currency']}" (ngModelChange)="formValidation()"
+        />
+      </div>
+
+      <div class="add-button">
+        <p-button (click)="onNoClick()" [disabled]="!is_Valid" class="add-action-button"><mat-icon mat-icon-button>save</mat-icon>Add Transaction</p-button>
+      </div>
+
+    </div>
+</div>

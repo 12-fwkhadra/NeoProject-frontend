@@ -1,0 +1,38 @@
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 0.1rem;
+}
+
+.title {
+    padding-right: 1rem;
+}
+
+.type-row, .currency-row{
+  display:flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-right:0.5rem;
+  margin-top: 1rem;
+}
+
+input#icondisplay {
+    width: 150px;
+}
+
+.add-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+}
+.add-action-button:disabled{
+  cursor: not-allowed;
+}
+
+.p-datepicker {
+    transform: scale(0.5) !important;
+}
+
+
+
