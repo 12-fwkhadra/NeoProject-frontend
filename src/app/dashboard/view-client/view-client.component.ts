@@ -1,8 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {DatafetchService} from "../../services/datafetch.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {CommonServiceService} from "../../services/common-service.service";
 import { MatDialogModule } from '@angular/material/dialog';
+import {AddTransactionComponent} from "../add-transaction/add-transaction.component";
+import {MessageService} from "primeng/api";
+import {DatasendService} from "../../services/datasend.service";
 
 @Component({
   selector: 'app-view-client',
@@ -13,6 +16,7 @@ export class ViewClientComponent implements OnInit{
   trans = [];
   client :any;
   height:any;
+  isSending =false;
   resizeListener: () => void;
   listLength = 0;
   pageSize = 100;
@@ -24,7 +28,7 @@ export class ViewClientComponent implements OnInit{
   stateOptions2: any[] = [
     { label: 'sélectionner la date de début', value: 'start' },
     { label: 'sélectionner la date de fin', value: 'end' }];
-  constructor(private datafetchsvc: DatafetchService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewClientComponent>, private commonService: CommonServiceService){
+  constructor(public dialog: MatDialog, private datafetchsvc: DatafetchService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewClientComponent>, private commonService: CommonServiceService, private messageService: MessageService, private datasendsvc: DatasendService){
     this.height = this.commonService.calculateScrollHeight();
     this.resizeListener = this.commonService.addResizeListener((height: string) => {
           this.height = height;
@@ -43,6 +47,33 @@ export class ViewClientComponent implements OnInit{
       });
   }
 
+  addTrans(): void{
+    let dialogRef = this.dialog.open(AddTransactionComponent, {
+      height: '500px',
+      width: '500px',
+      disableClose: true,
+      data: {tran:{'client_id':this.client.id}}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.isSending = true;
+      if (result) {
+        console.log("hello")
+        this.datasendsvc.addTransaction(result).subscribe(res => {
+          this.messageService.add({severity:res['class'], detail: res['message']});
+          this.dateRangeString = null;
+          this.getTrans();
+          this.isSending = false;
+        }, error => {
+          this.messageService.add({severity:'error', detail: 'An error has occurred, please contact support'});
+          this.isSending = false;
+          dialogRef.close();
+        });
+      }
+      else{
+        this.isSending = false;
+      }
+    });
+  }
   datevalue(dateRange: Date[]): void {
     if (dateRange[1] === null) {
       // Update the label and value of the start date option

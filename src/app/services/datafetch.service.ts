@@ -78,4 +78,9 @@ export class DatafetchService {
     let url: string = `${this.appconf.apiBaseUrl}/countries/`;
     return this.http.get<any>(url);
   }
+
+  getCurrencies(): Observable<any> {
+    let url: string = `${this.appconf.apiBaseUrl}/currencies/`;
+    return this.http.get<any>(url);
+  }
 }

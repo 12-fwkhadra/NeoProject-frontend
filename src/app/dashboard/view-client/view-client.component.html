@@ -8,7 +8,11 @@
             <button class="action-button" (click)="closeDialog()"><mat-icon mat-icon-button>close</mat-icon></button>
         </div>
     </div>
-
+      <div>
+        <button class="main-button" (click)="addTrans()">
+          <span><mat-icon mat-icon-button>add</mat-icon></span><span>Add Transaction</span>
+        </button>
+      </div>
       <div class="table-bg">
         <p-table [value]="trans" sortField="representative.name" sortMode="single" [scrollable]="true"
             [scrollHeight]="height" [rowHover]="true" groupRowsBy="representative.name" [filterDelay]="0"

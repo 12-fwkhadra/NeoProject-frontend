@@ -10,9 +10,9 @@ export class DatasendService {
 
   constructor(private http: HttpClient, private appconf: AppconfigService) { }
 
-  // addTransaction(data: any): Observable<any> {
-  //   let url: string = `${this.appconf.apiBaseUrl}`;
-  //   return this.http.post<any>(url, data, {headers: {'Content-Type': 'application/json'}});
-  // }
+  addTransaction(data: any): Observable<any> {
+    let url: string = `${this.appconf.apiBaseUrl}/add_tran/`;
+    return this.http.post<any>(url, data, {headers: {'Content-Type': 'application/json'}});
+  }
 
 }

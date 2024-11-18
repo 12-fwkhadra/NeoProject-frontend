@@ -9,6 +9,7 @@ import {AuthenticationService} from "../services/authentication.service";
 import {Router} from "@angular/router";
 import {UserstateService} from "../services/userstate.service";
 import { saveAs } from 'file-saver';
+import {AddTransactionComponent} from "./add-transaction/add-transaction.component";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

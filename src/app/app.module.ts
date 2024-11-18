@@ -25,6 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {RadioButtonModule} from "primeng/radiobutton";
 import { ViewClientComponent } from './dashboard/view-client/view-client.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AddTransactionComponent } from './dashboard/add-transaction/add-transaction.component';
+import {InputTextModule} from "primeng/inputtext";
 
 
 const globalRippleConfig: RippleGlobalOptions = {
@@ -35,25 +37,27 @@ const globalRippleConfig: RippleGlobalOptions = {
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    ViewClientComponent
+    ViewClientComponent,
+    AddTransactionComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    MatIcon,
-    PasswordModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    CalendarModule,
-    MatTooltip,
-    PaginatorModule,
-    TableModule,
-    MatIconModule,
-    RadioButtonModule,
-    MatDialogModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        MatIcon,
+        PasswordModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        CalendarModule,
+        MatTooltip,
+        PaginatorModule,
+        TableModule,
+        MatIconModule,
+        RadioButtonModule,
+        MatDialogModule,
+        InputTextModule
 
-  ],
+    ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     AuthenticationService,
