@@ -14,13 +14,14 @@
 
 4. The application includes only DASHBOARD page that displays the clients. The admin can:
    a. export all clients' data in an excel workbook
-   b. filter clients' table by name, email or id
+   b. filter clients' table by name, email or id with a refresh button to remove filters
    c. filter country column to fetch clients of a specific country
    d. the clients' table shows each client's data, total number of transactions, total sum of buys and total sum of sells
    e. view transactions of each client
    f. add a transaction for a specific client. The admin can't add unless the following fields are inserted: type, date, amount (only numbers allowed), currency.
    g. delete a transaction for a specific client
    h. logout from the portal which makes the token blacklisted
+    * all tables are paginated
 
    ![image](https://github.com/user-attachments/assets/f4047f8d-67b6-4dd9-929a-481cefcf8a9f)
 
