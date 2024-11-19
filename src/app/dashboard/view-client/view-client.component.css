@@ -8,3 +8,8 @@
 .title {
     padding-right: 1rem;
 }
+
+.heading-action{
+  align-self: end;
+  margin-bottom: 1rem;
+}

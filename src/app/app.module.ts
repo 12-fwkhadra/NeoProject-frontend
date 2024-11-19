@@ -27,6 +27,7 @@ import { ViewClientComponent } from './dashboard/view-client/view-client.compone
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddTransactionComponent } from './dashboard/add-transaction/add-transaction.component';
 import {InputTextModule} from "primeng/inputtext";
+import {ToastModule} from "primeng/toast";
 
 
 const globalRippleConfig: RippleGlobalOptions = {
@@ -55,7 +56,8 @@ const globalRippleConfig: RippleGlobalOptions = {
         MatIconModule,
         RadioButtonModule,
         MatDialogModule,
-        InputTextModule
+        InputTextModule,
+        ToastModule
 
     ],
   schemas: [NO_ERRORS_SCHEMA],

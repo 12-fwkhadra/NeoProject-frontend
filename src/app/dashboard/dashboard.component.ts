@@ -50,10 +50,13 @@ export class DashboardComponent {
 
   viewTrans(data:any): void{
     let dialogRef = this.dialog.open(ViewClientComponent, {
-      height: '600px',
+      height: '700px',
       width: '900px',
       data: data
     });
+    dialogRef.afterClosed().subscribe(result => {
+     location.reload();
+  });
   }
 
   logout(): void {

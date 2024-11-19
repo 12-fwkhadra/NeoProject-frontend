@@ -74,6 +74,18 @@ export class ViewClientComponent implements OnInit{
       }
     });
   }
+
+  deleteTrans(tid:any): void{
+    this.datafetchsvc.deleteTran(tid).subscribe(
+          res => {
+            this.messageService.add({severity:res['class'], detail: res['message']});
+            this.getTrans();
+          },
+          error => {
+            this.messageService.add({severity:'error', detail: 'An error occured, please contact support'});
+          });
+
+  }
   datevalue(dateRange: Date[]): void {
     if (dateRange[1] === null) {
       // Update the label and value of the start date option

@@ -35,8 +35,16 @@ export class AddTransactionComponent implements OnInit{
   }
 
   formValidation(): void{
-    if(this.tran['transaction_type'] && this.tran['transaction_date'] && this.tran['amount'] && this.tran['currency']){
+    if(this.tran['transaction_type'] && this.tran['transaction_date'] && this.tran['amount'] && this.isOnlyNumbers(this.tran['amount']) && this.tran['currency']){
       this.is_Valid = true;
     }
+    else{
+      this.is_Valid = false;
+    }
+  }
+
+  isOnlyNumbers(input:any) {
+    const regex = /^[0-9]+$/;
+    return regex.test(input);
   }
 }

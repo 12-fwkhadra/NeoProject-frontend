@@ -4,15 +4,16 @@
             <h2>{{client.name}}  # {{client.id}}</h2>
             <h4>{{client.email}}</h4>
         </div>
+        <div class="heading-action">
+          <button class="main-button" (click)="addTrans()">
+            <span><mat-icon mat-icon-button>add</mat-icon></span><span>Add Transaction</span>
+          </button>
+        </div>
         <div class="close-button">
             <button class="action-button" (click)="closeDialog()"><mat-icon mat-icon-button>close</mat-icon></button>
         </div>
     </div>
-      <div>
-        <button class="main-button" (click)="addTrans()">
-          <span><mat-icon mat-icon-button>add</mat-icon></span><span>Add Transaction</span>
-        </button>
-      </div>
+
       <div class="table-bg">
         <p-table [value]="trans" sortField="representative.name" sortMode="single" [scrollable]="true"
             [scrollHeight]="height" [rowHover]="true" groupRowsBy="representative.name" [filterDelay]="0"
@@ -39,6 +40,7 @@
               <th class="header-cell">Amount</th>
               <th class="header-cell">Exchange Rate</th>
               <th class="header-cell">Amount in USD</th>
+              <th class="header-cell">Actions</th>
             </tr>
           </ng-template>
 
@@ -51,6 +53,11 @@
               <td class="column-border">{{ (rowData.amount && rowData.currency) ? (rowData.amount + ' ' + rowData.currency) : '0' }}</td>
               <td class="column-border">{{ rowData.rate? rowData.rate: '0'}}</td>
               <td class="column-border">{{ rowData.in_usd? rowData.in_usd: '0'}}</td>
+              <td class="column-border" >
+                <div class="action-but-cont">
+                  <button class="action-button" (click)="deleteTrans(rowData.id)"><mat-icon mat-icon-button>delete</mat-icon></button>
+                </div>
+              </td>
             </tr>
           </ng-template>
 

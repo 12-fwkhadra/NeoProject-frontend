@@ -83,4 +83,9 @@ export class DatafetchService {
     let url: string = `${this.appconf.apiBaseUrl}/currencies/`;
     return this.http.get<any>(url);
   }
+
+  deleteTran(tid: number): Observable<any> {
+    let url: string = `${this.appconf.apiBaseUrl}/transaction/delete`;
+    return this.http.get<any>(url + '/' + tid + '/');
+  }
 }

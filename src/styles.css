@@ -61,9 +61,7 @@ input#search {
 p-table {
     width: 100%;
 }
-.mat-drawer-content {
-    overflow: hidden !important;
-}
+
 .main-button .mat-icon{
     padding-top: 3px !important;
 }
@@ -113,33 +111,9 @@ p-table {
 .p-datepicker {
     transform: scale(0.8) !important;
 }
-
-.radio-button-container {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.radio-button-container label {
-    margin: 0.3rem 0.2rem 0 0.5rem;
-}
-
 .radio-button {
     margin: 0rem !important;
     margin-right: 0.5rem !important;
-}
-
-#content-type {
-    height: 2rem !important;
-    direction: rtl !important;
-    text-align: right !important;
-    resize: none !important;
-    border-width: 1px !important;
-}
-
-#content-type:focus {
-    border-color: black;
-    border-width: 1px !important;
-    outline: none !important;
 }
 
 .action-but-cont {
