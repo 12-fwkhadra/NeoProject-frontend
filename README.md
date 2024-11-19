@@ -26,6 +26,9 @@ This is the frontend source code of the NEO Technology Challenge
    ![image](https://github.com/user-attachments/assets/f4047f8d-67b6-4dd9-929a-481cefcf8a9f)
 
 
+This is a demo video of the application: https://www.loom.com/share/20ebcda89d4e4e12a04275c243e1bf34?sid=e4486d7f-a9fd-4c68-a886-4773b3cbadea 
+
+
 
 
 
