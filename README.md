@@ -22,6 +22,9 @@
    g. delete a transaction for a specific client
    h. logout from the portal which makes the token blacklisted
 
+   ![image](https://github.com/user-attachments/assets/f4047f8d-67b6-4dd9-929a-481cefcf8a9f)
+
+
 
 
 
